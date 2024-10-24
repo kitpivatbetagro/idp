@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: {{ parameters.name }}
+  namespace: {{ parameters.namespace }}
+  labels:
+    app: {{ parameters.app }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+    app: {{ parameters.app }}
+  template:
+    metadata:
+      labels:
+    app: {{ parameters.app }}
+    spec:
+      containers:
+  - name: {{ parameters.app }}
+          image: {{ parameters.image }}
+          ports:
+            - containerPort: 3000

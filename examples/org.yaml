@@ -1,0 +1,55 @@
+--- # User: kitpivatp
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: kitpivatp
+spec:
+  profile:
+    email: kitpivatp@betagro.com
+  memberOf: [Developer, Infra]
+ 
+--- # User: another-user
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: anotheruser
+spec:
+  profile:
+    email: anotheruser@betagro.com
+  memberOf: [Admin, Reader]
+ 
+--- # Group: Developer
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Developer
+spec:
+  type: team
+  children: []
+ 
+--- # Group: Infra
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Infra
+spec:
+  type: team
+  children: []
+ 
+--- # Group: Admin
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Admin
+spec:
+  type: team
+  children: []
+ 
+--- # Group: Reader
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Reader
+spec:
+  type: team
+  children: []

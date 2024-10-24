@@ -1,0 +1,44 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: nodejs-boilerplate-deployment
+  title: NodeJS Boilerplate Deployment
+  description: Configures and deploys the NodeJS boilerplate Kubernetes resources
+  tags:
+    - Kubernetes
+    - NodeJS
+spec:
+  owner: your-team
+  type: service
+  parameters:
+    - title: Deployment Namespace
+      type: string
+      required: true
+      description: Namespace for Kubernetes Deployment
+      default: nodejs-boilerplate
+    - title: Application Name
+      type: string
+      required: true
+      description: Application Name for the deployment
+      default: nodejs
+    - title: Image Name
+      type: string
+      required: true
+      description: The Docker image to use for deployment
+  steps:
+    - id: fetch
+      name: Fetch Base Files
+      action: fetch:template
+      input:
+        url: './templates'
+    - id: prepare
+      name: Prepare Values
+      action: execute:handlebars
+      input:
+        files:
+          - '**/*.yaml'
+        values:
+          namespace: '{{ parameters.namespace }}'
+          app: '{{ parameters.app }}'
+          name: '{{ parameters.name }}'
+          image: '{{ parameters.image }}'
